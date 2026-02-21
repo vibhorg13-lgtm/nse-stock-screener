@@ -334,12 +334,4 @@ else:
 
         **Tip:** Start with relaxed filters to see how many stocks have data, then tighten gradually.
         """)
-```
 
----
-
-## File 2 — `requirements.txt`
-```
-streamlit>=1.32.0
-yfinance>=0.2.36
-pandas>=2.0.0
