@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Equita — Stock Screener",
     page_icon="📈",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 st.markdown("""
@@ -22,7 +22,6 @@ st.markdown("""
     --border:  #e8e6df;
     --muted:   #9e9b93;
     --ink:     #1a1917;
-    --ink2:    #3d3b36;
     --gold:    #b8935a;
     --green:   #2d6a4f;
     --red:     #c0392b;
@@ -35,72 +34,60 @@ html, body, [class*="css"], .main, .stApp,
     background-color: #f7f6f3 !important;
     color: #1a1917 !important;
     font-family: 'DM Sans', sans-serif !important;
-    font-weight: 400;
 }
-.stApp { background-color: #f7f6f3 !important; }
-[data-testid="stAppViewContainer"] { background-color: #f7f6f3 !important; }
+.stApp, [data-testid="stAppViewContainer"] { background-color: #f7f6f3 !important; }
 
 #MainMenu, footer, header { visibility: hidden; }
-.block-container {
-    padding: 2.5rem 3rem 3rem 3rem !important;
-    max-width: 1400px !important;
-}
-
-[data-testid="stSidebar"] {
-    background: #ffffff !important;
-    border-right: 1px solid #e8e6df !important;
-}
-[data-testid="stSidebar"] > div:first-child { padding: 2.5rem 1.8rem !important; }
-[data-testid="stSidebar"] * {
-    color: #1a1917 !important;
-    font-family: 'DM Sans', sans-serif !important;
-}
-
-/* Hide default sidebar toggle - replaced by our button */
 [data-testid="collapsedControl"] { display: none !important; }
 
-.sidebar-brand {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 2.5rem; padding-bottom: 2rem;
+.block-container {
+    padding: 2rem 2.5rem 3rem 2.5rem !important;
+    max-width: 1300px !important;
+}
+
+.page-header {
+    display: flex; align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2rem; padding-bottom: 1.5rem;
     border-bottom: 1px solid #e8e6df;
 }
-.sidebar-logo {
-    width: 32px; height: 32px; background: #1a1917;
-    border-radius: 8px; display: flex; align-items: center;
-    justify-content: center; font-size: 0.95rem; font-weight: 700;
-    color: #b8935a !important; flex-shrink: 0;
-}
-.sidebar-name {
-    font-family: 'DM Serif Display', serif !important;
-    font-size: 1.15rem; color: #1a1917 !important;
-}
-.sidebar-tagline {
-    font-size: 0.7rem; color: #9e9b93 !important;
-    letter-spacing: 1px; text-transform: uppercase; margin-top: 1px;
+.page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.6rem; line-height: 1.1; letter-spacing: -0.5px;
 }
 
-.section-label {
-    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
-    color: #9e9b93 !important; font-weight: 600; margin: 1.8rem 0 0.8rem 0;
+.filter-panel {
+    background: #ffffff;
+    border: 1px solid #e8e6df;
+    border-radius: 16px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.filter-panel-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; color: #1a1917;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #e8e6df;
+}
+.filter-group-label {
+    font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+    color: #9e9b93; font-weight: 600; margin-bottom: 0.6rem; margin-top: 0.2rem;
 }
 
-.stSlider > div > div > div > div { background: #1a1917 !important; }
-.stSlider [data-baseweb="slider"] div[role="slider"] {
-    background: #1a1917 !important; border-color: #1a1917 !important;
-}
 div[data-baseweb="checkbox"] svg { fill: #1a1917 !important; }
 .stMultiSelect [data-baseweb="tag"] {
     background: #1a1917 !important; border-radius: 4px !important;
 }
 .stMultiSelect [data-baseweb="tag"] span { color: white !important; }
-
-.stNumberInput input, div[data-baseweb="input"] input {
+.stSlider > div > div > div > div { background: #1a1917 !important; }
+.stSlider [data-baseweb="slider"] div[role="slider"] {
+    background: #1a1917 !important; border-color: #1a1917 !important;
+}
+.stNumberInput input {
     background: #ffffff !important; border-color: #e8e6df !important;
     border-radius: 8px !important; color: #1a1917 !important;
-}
-.stNumberInput [data-baseweb="input"] {
-    background: #ffffff !important; border-color: #e8e6df !important;
-    border-radius: 8px !important;
 }
 .stNumberInput button {
     background: #f0efe9 !important; border-color: #e8e6df !important;
@@ -108,15 +95,15 @@ div[data-baseweb="checkbox"] svg { fill: #1a1917 !important; }
 }
 
 .stButton > button {
-    background: #e8e6df !important; color: #1a1917 !important;
+    background: #1a1917 !important; color: white !important;
     font-family: 'DM Sans', sans-serif !important; font-weight: 600 !important;
-    font-size: 0.9rem !important; border: 1px solid #e8e6df !important;
-    border-radius: 10px !important; padding: 0.65rem 1.5rem !important;
-    transition: all 0.2s ease !important; width: 100% !important;
+    font-size: 1rem !important; border: none !important;
+    border-radius: 10px !important; padding: 0.7rem 2.5rem !important;
+    transition: all 0.2s ease !important;
 }
 .stButton > button:hover {
-    background: #1a1917 !important; color: white !important;
-    border-color: #1a1917 !important; transform: translateY(-1px) !important;
+    background: #b8935a !important;
+    transform: translateY(-1px) !important;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
 }
 
@@ -126,52 +113,49 @@ div[data-baseweb="checkbox"] svg { fill: #1a1917 !important; }
 }
 .metric-card {
     background: #ffffff; border: 1px solid #e8e6df;
-    border-radius: 14px; padding: 1.4rem 1.6rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border-radius: 14px; padding: 1.3rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .metric-card-label {
-    font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;
-    color: #9e9b93; font-weight: 500; margin-bottom: 0.5rem;
+    font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #9e9b93; font-weight: 500; margin-bottom: 0.4rem;
 }
 .metric-card-value {
-    font-family: 'DM Serif Display', serif; font-size: 2.2rem;
-    color: #1a1917; line-height: 1;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: #1a1917; line-height: 1;
 }
-.metric-card-sub { font-size: 0.75rem; color: #9e9b93; margin-top: 0.3rem; }
+.metric-card-sub { font-size: 0.72rem; color: #9e9b93; margin-top: 0.3rem; }
 
 .results-header {
     display: flex; align-items: center;
     justify-content: space-between; margin-bottom: 1rem;
 }
 .results-title {
-    font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: #1a1917;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; color: #1a1917;
 }
 .results-count {
-    background: #1a1917; color: white !important; font-size: 0.75rem;
-    font-weight: 600; padding: 3px 10px; border-radius: 20px;
+    background: #1a1917; color: white !important;
+    font-size: 0.75rem; font-weight: 600;
+    padding: 3px 12px; border-radius: 20px;
 }
-
 .section-title {
-    font-family: 'DM Serif Display', serif; font-size: 1.3rem;
-    color: #1a1917; margin-bottom: 1rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; color: #1a1917; margin-bottom: 0.8rem;
 }
 
 [data-testid="stDataFrame"] {
-    border-radius: 14px !important; border: 1px solid #e8e6df !important;
-    overflow: hidden !important; box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+    border-radius: 12px !important; border: 1px solid #e8e6df !important;
+    overflow: hidden !important;
 }
 
 .empty-state {
-    text-align: center; padding: 5rem 2rem; background: #ffffff;
-    border: 1px solid #e8e6df; border-radius: 14px;
-}
-.empty-state-symbol {
-    font-family: 'DM Serif Display', serif; font-size: 3.5rem;
-    color: #e8e6df; margin-bottom: 1rem;
+    text-align: center; padding: 4rem 2rem;
+    background: #ffffff; border: 1px solid #e8e6df; border-radius: 14px;
 }
 .empty-state-title {
-    font-family: 'DM Serif Display', serif; font-size: 1.5rem;
-    color: #1a1917; margin-bottom: 0.5rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; color: #1a1917; margin-bottom: 0.5rem;
 }
 .empty-state-sub {
     font-size: 0.85rem; color: #9e9b93;
@@ -181,12 +165,18 @@ div[data-baseweb="checkbox"] svg { fill: #1a1917 !important; }
 .stDownloadButton > button {
     background: transparent !important; color: #1a1917 !important;
     border: 1px solid #e8e6df !important; border-radius: 8px !important;
-    font-family: 'DM Sans', sans-serif !important; font-size: 0.82rem !important;
-    font-weight: 500 !important; padding: 0.5rem 1.2rem !important;
+    font-size: 0.82rem !important; font-weight: 500 !important;
+    padding: 0.5rem 1.2rem !important;
 }
 .stDownloadButton > button:hover {
     background: #1a1917 !important; color: white !important;
-    border-color: #1a1917 !important;
+}
+
+.notice {
+    background: white; border: 1px solid #e8e6df;
+    border-left: 3px solid #b8935a; border-radius: 8px;
+    padding: 0.7rem 1rem; font-size: 0.78rem;
+    color: #3d3b36; margin-bottom: 1.5rem;
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -287,113 +277,98 @@ def load_all_stocks(symbols):
     return pd.DataFrame(results)
 
 
-with st.sidebar:
-    st.markdown("""
-    <div class="sidebar-brand">
-        <div class="sidebar-logo">E</div>
-        <div>
-            <div class="sidebar-name">Equita</div>
-            <div class="sidebar-tagline">NSE Screener</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<p class="section-label">Universe</p>', unsafe_allow_html=True)
-    selected_stocks = st.multiselect(
-        "Stocks", options=list(NSE_STOCKS.keys()), default=list(NSE_STOCKS.keys()),
-        format_func=lambda x: f"{x}  -  {NSE_STOCKS[x]}", label_visibility="collapsed"
-    )
-    all_sectors = sorted(set(SECTORS.values()))
-    selected_sectors = st.multiselect(
-        "Sectors", options=all_sectors, default=all_sectors,
-        label_visibility="collapsed", placeholder="Filter by sector..."
-    )
-
-    st.markdown('<p class="section-label">Valuation</p>', unsafe_allow_html=True)
-    pe_enabled = st.checkbox("P/E Ratio filter", value=True)
-    pe_min, pe_max = st.slider("P/E Range", 0, 150, (0, 40),
-                                disabled=not pe_enabled, label_visibility="collapsed")
-    if pe_enabled:
-        st.caption(f"P/E between {pe_min} - {pe_max}")
-
-    mcap_enabled = st.checkbox("Min Market Cap", value=False)
-    if mcap_enabled:
-        mcap_min = st.number_input("Min Market Cap", value=10000, step=5000, min_value=0,
-                                    label_visibility="collapsed",
-                                    help="Minimum market cap in Rs Crore. Steps of Rs 5,000 Cr.")
-        st.caption(f"Market Cap >= Rs {mcap_min:,} Cr  (steps of Rs 5,000 Cr)")
-    else:
-        mcap_min = 0
-
-    st.markdown('<p class="section-label">Quality</p>', unsafe_allow_html=True)
-    roe_enabled = st.checkbox("Min ROE (%)", value=True)
-    roe_min = st.slider("ROE", 0, 50, 15, disabled=not roe_enabled, label_visibility="collapsed")
-    if roe_enabled:
-        st.caption(f"ROE >= {roe_min}%")
-
-    st.markdown('<p class="section-label">Growth</p>', unsafe_allow_html=True)
-    rev_enabled = st.checkbox("Min Sales Growth (%)", value=True)
-    rev_min = st.slider("Sales Growth", -20, 100, 10, disabled=not rev_enabled, label_visibility="collapsed")
-    if rev_enabled:
-        st.caption(f"Sales Growth >= {rev_min}%  (Year-on-Year, latest annual)")
-
-    profit_enabled = st.checkbox("Min Profit Growth (%)", value=True)
-    profit_min = st.slider("Profit Growth", -20, 100, 10, disabled=not profit_enabled, label_visibility="collapsed")
-    if profit_enabled:
-        st.caption(f"Profit Growth >= {profit_min}%  (Year-on-Year, latest annual)")
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    run_screen = st.button("Run Screener", use_container_width=True)
-
-
 today = datetime.now().strftime("%A, %d %B %Y")
 
 st.markdown(f"""
-<div style="display:flex; align-items:flex-end; justify-content:space-between;
-            margin-bottom:2.5rem; padding-bottom:1.5rem; border-bottom:1px solid #e8e6df;">
-    <div style="font-family:'DM Serif Display',Georgia,serif; font-size:2.6rem;
-                line-height:1.2; letter-spacing:-0.5px;">
+<div class="page-header">
+    <div class="page-title">
         <span style="color:#1a1917; -webkit-text-fill-color:#1a1917;">NSE </span>
         <em style="color:#b8935a; -webkit-text-fill-color:#b8935a; font-style:italic;">Stock </em>
         <span style="color:#1a1917; -webkit-text-fill-color:#1a1917;">Screener</span>
     </div>
-    <div style="font-size:0.78rem; color:#9e9b93; text-align:right;">
+    <div style="font-size:0.78rem; color:#9e9b93; text-align:right; line-height:1.8;">
         <div style="color:#1a1917; font-weight:500;">NSE / BSE</div>
         <div>{today}</div>
-        <div style="margin-top:4px;">Powered by Yahoo Finance</div>
+        <div>Powered by Yahoo Finance</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<div style="display:flex; gap:1rem; align-items:stretch; margin-bottom:1.2rem; flex-wrap:wrap;">
-    <button onclick="
-        var allBtns = window.parent.document.querySelectorAll('button');
-        for(var b of allBtns) {
-            if(b.getAttribute('aria-expanded') !== null ||
-               b.getAttribute('data-testid') === 'collapsedControl') {
-                b.click(); break;
-            }
-        }
-    "
-    style="background:#1a1917; color:white; border:none; border-radius:12px;
-           padding:0.9rem 1.6rem; font-size:0.9rem; font-weight:600; cursor:pointer;
-           display:flex; align-items:center; gap:10px; font-family:inherit;
-           box-shadow:0 2px 8px rgba(0,0,0,0.2); flex-shrink:0;">
-        <span style="font-size:1.1rem;">&#9776;</span>
-        <span>Open Filters</span>
-    </button>
-    <div style="background:white; border:1px solid #e8e6df; border-left:3px solid #b8935a;
-                border-radius:8px; padding:0.75rem 1.1rem; font-size:0.8rem;
-                color:#3d3b36; flex:1; min-width:200px; display:flex; align-items:center;">
-        Data sourced from Yahoo Finance &nbsp;&middot;&nbsp; Financials reflect latest annual report &nbsp;&middot;&nbsp; Growth figures shown with FY period in column headers
-    </div>
-</div>
-""", unsafe_allow_html=True)
+st.markdown('<div class="filter-panel"><div class="filter-panel-title">Filters</div>', unsafe_allow_html=True)
+
+col1, col2 = st.columns(2)
+with col1:
+    st.markdown('<p class="filter-group-label">Stock Universe</p>', unsafe_allow_html=True)
+    selected_stocks = st.multiselect(
+        "Stocks", options=list(NSE_STOCKS.keys()), default=list(NSE_STOCKS.keys()),
+        format_func=lambda x: f"{x}  -  {NSE_STOCKS[x]}", label_visibility="collapsed"
+    )
+with col2:
+    st.markdown('<p class="filter-group-label">Sector</p>', unsafe_allow_html=True)
+    all_sectors = sorted(set(SECTORS.values()))
+    selected_sectors = st.multiselect(
+        "Sectors", options=all_sectors, default=all_sectors,
+        label_visibility="collapsed", placeholder="All sectors"
+    )
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+col3, col4, col5 = st.columns(3)
+with col3:
+    st.markdown('<p class="filter-group-label">P/E Ratio</p>', unsafe_allow_html=True)
+    pe_enabled = st.checkbox("Enable P/E filter", value=True, key="pe_chk")
+    pe_min, pe_max = st.slider("P/E Range", 0, 150, (0, 40),
+                                disabled=not pe_enabled, label_visibility="collapsed")
+    if pe_enabled:
+        st.caption(f"Between {pe_min} and {pe_max}")
+
+with col4:
+    st.markdown('<p class="filter-group-label">Return on Equity (ROE)</p>', unsafe_allow_html=True)
+    roe_enabled = st.checkbox("Enable ROE filter", value=True, key="roe_chk")
+    roe_min = st.slider("Min ROE %", 0, 50, 15,
+                         disabled=not roe_enabled, label_visibility="collapsed")
+    if roe_enabled:
+        st.caption(f"ROE >= {roe_min}%")
+
+with col5:
+    st.markdown('<p class="filter-group-label">Market Cap (Rs Cr)</p>', unsafe_allow_html=True)
+    mcap_enabled = st.checkbox("Enable Market Cap filter", value=False, key="mcap_chk")
+    if mcap_enabled:
+        mcap_min = st.number_input("Min Market Cap", value=10000, step=5000,
+                                    min_value=0, label_visibility="collapsed")
+        st.caption(f"Min Rs {mcap_min:,} Cr  (steps of Rs 5,000 Cr)")
+    else:
+        mcap_min = 0
+        st.caption("Not applied")
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+col6, col7 = st.columns(2)
+with col6:
+    st.markdown('<p class="filter-group-label">Min Sales Growth % (Year-on-Year)</p>', unsafe_allow_html=True)
+    rev_enabled = st.checkbox("Enable Sales Growth filter", value=True, key="rev_chk")
+    rev_min = st.slider("Min Sales Growth", -20, 100, 10,
+                         disabled=not rev_enabled, label_visibility="collapsed")
+    if rev_enabled:
+        st.caption(f"Sales Growth >= {rev_min}% YoY")
+
+with col7:
+    st.markdown('<p class="filter-group-label">Min Profit Growth % (Year-on-Year)</p>', unsafe_allow_html=True)
+    profit_enabled = st.checkbox("Enable Profit Growth filter", value=True, key="profit_chk")
+    profit_min = st.slider("Min Profit Growth", -20, 100, 10,
+                            disabled=not profit_enabled, label_visibility="collapsed")
+    if profit_enabled:
+        st.caption(f"Profit Growth >= {profit_min}% YoY")
+
+st.markdown("</div>", unsafe_allow_html=True)
+
+run_screen = st.button("Run Screener")
+
+st.markdown('<div class="notice">Data sourced from Yahoo Finance &nbsp;&middot;&nbsp; Financials reflect latest annual report &nbsp;&middot;&nbsp; Growth figures are year-on-year</div>', unsafe_allow_html=True)
 
 if run_screen:
     if not selected_stocks:
-        st.warning("Please select at least one stock from the sidebar.")
+        st.warning("Please select at least one stock.")
     else:
         with st.spinner(""):
             df = load_all_stocks(selected_stocks)
@@ -444,7 +419,7 @@ if run_screen:
                 </div>
                 <div class="metric-card">
                     <div class="metric-card-label">Avg P/E</div>
-                    <div class="metric-card-value">{"—" if pd.isna(avg_pe) else f"{avg_pe:.1f}x"}</div>
+                    <div class="metric-card-value">{"&mdash;" if pd.isna(avg_pe) else f"{avg_pe:.1f}x"}</div>
                     <div class="metric-card-sub">Qualified stocks</div>
                 </div>
             </div>
@@ -453,9 +428,8 @@ if run_screen:
             if filtered.empty:
                 st.markdown("""
                 <div class="empty-state">
-                    <div class="empty-state-symbol">—</div>
                     <div class="empty-state-title">No stocks matched</div>
-                    <div class="empty-state-sub">Try relaxing your filter thresholds.</div>
+                    <div class="empty-state-sub">Try relaxing your filter thresholds above.</div>
                 </div>
                 """, unsafe_allow_html=True)
             else:
@@ -553,31 +527,12 @@ if run_screen:
 else:
     st.markdown("""
     <div class="empty-state">
-        <div class="empty-state-symbol">—</div>
         <div class="empty-state-title">Ready to screen</div>
         <div class="empty-state-sub">
-            Click <strong>Open Filters</strong> above, configure your filters,
-            then press <strong>Run Screener</strong> to discover qualifying companies.
+            Set your filters above and press <strong>Run Screener</strong>
+            to discover qualifying companies.
         </div>
     </div>
     """, unsafe_allow_html=True)
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    with st.expander("How to use Equita"):
-        st.markdown("""
-        **1. Open Filters** — click the dark "Open Filters" button at the top to open the sidebar.
-
-        **2. Select your universe** — choose which NSE stocks to include and filter by sector.
-
-        **3. Set valuation filters** — P/E ratio range tells you how expensive a stock is relative to earnings.
-
-        **4. Set quality filters** — ROE measures how efficiently a company uses shareholder money.
-
-        **5. Set growth filters** — Sales and Profit Growth show if the business is expanding year-on-year.
-
-        **6. Run and compare** — the Industry Comparison table shows which stocks outperform their sector peers.
-
-        **Tip:** Start with relaxed filters to see what data is available, then tighten gradually.
-        """)
 
                     
