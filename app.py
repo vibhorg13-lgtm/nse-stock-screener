@@ -56,29 +56,8 @@ html, body, [class*="css"], .main, .stApp,
     font-family: 'DM Sans', sans-serif !important;
 }
 
-/* Sidebar toggle button - make it visible on mobile */
-[data-testid="collapsedControl"] {
-    background: #1a1917 !important;
-    border-radius: 0 10px 10px 0 !important;
-    width: 48px !important;
-    height: 48px !important;
-    top: 12px !important;
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.25) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-[data-testid="collapsedControl"] svg {
-    fill: #b8935a !important;
-    width: 22px !important;
-    height: 22px !important;
-}
-[data-testid="collapsedControl"]:hover {
-    background: #b8935a !important;
-}
-[data-testid="collapsedControl"]:hover svg {
-    fill: white !important;
-}
+/* Hide default sidebar toggle - replaced by our button */
+[data-testid="collapsedControl"] { display: none !important; }
 
 .sidebar-brand {
     display: flex; align-items: center; gap: 10px;
@@ -216,7 +195,6 @@ div[data-baseweb="checkbox"] svg { fill: #1a1917 !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Stock Data ────────────────────────────────────────────────────────────────
 NSE_STOCKS = {
     "RELIANCE": "Reliance Industries", "TCS": "Tata Consultancy Services",
     "HDFCBANK": "HDFC Bank", "INFY": "Infosys", "ICICIBANK": "ICICI Bank",
@@ -246,7 +224,6 @@ SECTORS = {
     "ADANIENT": "Conglomerate", "BAJAJFINSV": "NBFC", "DRREDDY": "Pharma",
 }
 
-# ── Fetch ─────────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=3600, show_spinner=False)
 def fetch_stock_data(ticker_symbol):
     try:
@@ -310,7 +287,6 @@ def load_all_stocks(symbols):
     return pd.DataFrame(results)
 
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("""
     <div class="sidebar-brand">
@@ -370,14 +346,16 @@ with st.sidebar:
     run_screen = st.button("Run Screener", use_container_width=True)
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
 today = datetime.now().strftime("%A, %d %B %Y")
 
 st.markdown(f"""
 <div style="display:flex; align-items:flex-end; justify-content:space-between;
             margin-bottom:2.5rem; padding-bottom:1.5rem; border-bottom:1px solid #e8e6df;">
-    <div style="font-family:'DM Serif Display',Georgia,serif; font-size:2.6rem; line-height:1.2; letter-spacing:-0.5px;">
-        <span style="color:#1a1917; -webkit-text-fill-color:#1a1917; font-style:normal;">NSE </span><em style="color:#b8935a; -webkit-text-fill-color:#b8935a; font-style:italic;">Stock </em><span style="color:#1a1917; -webkit-text-fill-color:#1a1917; font-style:normal;">Screener</span>
+    <div style="font-family:'DM Serif Display',Georgia,serif; font-size:2.6rem;
+                line-height:1.2; letter-spacing:-0.5px;">
+        <span style="color:#1a1917; -webkit-text-fill-color:#1a1917;">NSE </span>
+        <em style="color:#b8935a; -webkit-text-fill-color:#b8935a; font-style:italic;">Stock </em>
+        <span style="color:#1a1917; -webkit-text-fill-color:#1a1917;">Screener</span>
     </div>
     <div style="font-size:0.78rem; color:#9e9b93; text-align:right;">
         <div style="color:#1a1917; font-weight:500;">NSE / BSE</div>
@@ -388,21 +366,28 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<div style="background:#1a1917; color:white; border-radius:12px; padding:1rem 1.2rem;
-            font-size:0.85rem; margin-bottom:1rem; display:flex; align-items:center; gap:12px;">
-    <div style="background:#b8935a; border-radius:8px; width:38px; height:38px; flex-shrink:0;
-                display:flex; align-items:center; justify-content:center; font-size:1.3rem;">
-        &#9776;
+<div style="display:flex; gap:1rem; align-items:stretch; margin-bottom:1.2rem; flex-wrap:wrap;">
+    <button onclick="
+        var allBtns = window.parent.document.querySelectorAll('button');
+        for(var b of allBtns) {
+            if(b.getAttribute('aria-expanded') !== null ||
+               b.getAttribute('data-testid') === 'collapsedControl') {
+                b.click(); break;
+            }
+        }
+    "
+    style="background:#1a1917; color:white; border:none; border-radius:12px;
+           padding:0.9rem 1.6rem; font-size:0.9rem; font-weight:600; cursor:pointer;
+           display:flex; align-items:center; gap:10px; font-family:inherit;
+           box-shadow:0 2px 8px rgba(0,0,0,0.2); flex-shrink:0;">
+        <span style="font-size:1.1rem;">&#9776;</span>
+        <span>Open Filters</span>
+    </button>
+    <div style="background:white; border:1px solid #e8e6df; border-left:3px solid #b8935a;
+                border-radius:8px; padding:0.75rem 1.1rem; font-size:0.8rem;
+                color:#3d3b36; flex:1; min-width:200px; display:flex; align-items:center;">
+        Data sourced from Yahoo Finance &nbsp;&middot;&nbsp; Financials reflect latest annual report &nbsp;&middot;&nbsp; Growth figures shown with FY period in column headers
     </div>
-    <div>
-        <div style="font-weight:600; font-size:0.9rem; margin-bottom:2px;">Open the Filters panel</div>
-        <div style="color:#9e9b93; font-size:0.78rem;">Tap the <strong style="color:#b8935a;">dark button at top-left</strong> of your screen to set filters and run the screener</div>
-    </div>
-</div>
-<div style="background:white; border:1px solid #e8e6df; border-left:3px solid #b8935a;
-            border-radius:8px; padding:0.75rem 1.1rem; font-size:0.8rem;
-            color:#3d3b36; margin-bottom:1.8rem;">
-    Data sourced from Yahoo Finance &nbsp;&middot;&nbsp; Financials reflect latest annual report &nbsp;&middot;&nbsp; Growth figures shown with FY period in column headers
 </div>
 """, unsafe_allow_html=True)
 
@@ -571,8 +556,8 @@ else:
         <div class="empty-state-symbol">—</div>
         <div class="empty-state-title">Ready to screen</div>
         <div class="empty-state-sub">
-            Configure your filters in the sidebar, then press
-            <strong>Run Screener</strong> to discover qualifying companies.
+            Click <strong>Open Filters</strong> above, configure your filters,
+            then press <strong>Run Screener</strong> to discover qualifying companies.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -580,15 +565,17 @@ else:
     st.markdown("<br>", unsafe_allow_html=True)
     with st.expander("How to use Equita"):
         st.markdown("""
-        **1. Select your universe** — choose which NSE stocks to include and filter by sector.
+        **1. Open Filters** — click the dark "Open Filters" button at the top to open the sidebar.
 
-        **2. Set valuation filters** — P/E ratio range tells you how expensive a stock is relative to earnings.
+        **2. Select your universe** — choose which NSE stocks to include and filter by sector.
 
-        **3. Set quality filters** — ROE measures how efficiently a company uses shareholder money.
+        **3. Set valuation filters** — P/E ratio range tells you how expensive a stock is relative to earnings.
 
-        **4. Set growth filters** — Sales and Profit Growth show if the business is expanding year-on-year.
+        **4. Set quality filters** — ROE measures how efficiently a company uses shareholder money.
 
-        **5. Run and compare** — the Industry Comparison table shows which stocks outperform their sector peers.
+        **5. Set growth filters** — Sales and Profit Growth show if the business is expanding year-on-year.
+
+        **6. Run and compare** — the Industry Comparison table shows which stocks outperform their sector peers.
 
         **Tip:** Start with relaxed filters to see what data is available, then tighten gradually.
         """)
