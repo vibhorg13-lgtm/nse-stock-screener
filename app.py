@@ -29,12 +29,15 @@ st.markdown("""
     --shadow:  0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
 }
 
-html, body, [class*="css"], .main {
-    background-color: var(--off) !important;
-    color: var(--ink) !important;
+html, body, [class*="css"], .main, .stApp,
+[data-testid="stAppViewContainer"], [data-testid="block-container"] {
+    background-color: #f7f6f3 !important;
+    color: #1a1917 !important;
     font-family: 'DM Sans', sans-serif !important;
     font-weight: 400;
 }
+.stApp { background-color: #f7f6f3 !important; }
+[data-testid="stAppViewContainer"] { background-color: #f7f6f3 !important; }
 
 #MainMenu, footer, header { visibility: hidden; }
 .block-container {
@@ -43,276 +46,148 @@ html, body, [class*="css"], .main {
 }
 
 [data-testid="stSidebar"] {
-    background: var(--white) !important;
-    border-right: 1px solid var(--border) !important;
-    padding: 0 !important;
+    background: #ffffff !important;
+    border-right: 1px solid #e8e6df !important;
 }
-[data-testid="stSidebar"] > div:first-child {
-    padding: 2.5rem 1.8rem !important;
-}
+[data-testid="stSidebar"] > div:first-child { padding: 2.5rem 1.8rem !important; }
 [data-testid="stSidebar"] * {
-    color: var(--ink) !important;
+    color: #1a1917 !important;
     font-family: 'DM Sans', sans-serif !important;
 }
 
 .sidebar-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 2.5rem; padding-bottom: 2rem;
+    border-bottom: 1px solid #e8e6df;
 }
 .sidebar-logo {
-    width: 32px;
-    height: 32px;
-    background: var(--ink);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #b8935a !important;
-    flex-shrink: 0;
+    width: 32px; height: 32px; background: #1a1917;
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 0.95rem; font-weight: 700;
+    color: #b8935a !important; flex-shrink: 0;
 }
 .sidebar-name {
     font-family: 'DM Serif Display', serif !important;
-    font-size: 1.15rem;
-    color: var(--ink) !important;
-    letter-spacing: 0.3px;
+    font-size: 1.15rem; color: #1a1917 !important;
 }
 .sidebar-tagline {
-    font-size: 0.7rem;
-    color: var(--muted) !important;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 1px;
+    font-size: 0.7rem; color: #9e9b93 !important;
+    letter-spacing: 1px; text-transform: uppercase; margin-top: 1px;
 }
 
 .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted) !important;
-    font-weight: 600;
-    margin: 1.8rem 0 0.8rem 0;
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    color: #9e9b93 !important; font-weight: 600; margin: 1.8rem 0 0.8rem 0;
 }
 
-.stSlider > div > div > div > div { background: var(--ink) !important; }
+.stSlider > div > div > div > div { background: #1a1917 !important; }
 .stSlider [data-baseweb="slider"] div[role="slider"] {
-    background: var(--ink) !important;
-    border-color: var(--ink) !important;
+    background: #1a1917 !important; border-color: #1a1917 !important;
 }
-div[data-baseweb="checkbox"] svg { fill: var(--ink) !important; }
-div[data-baseweb="checkbox"] { gap: 8px; }
+div[data-baseweb="checkbox"] svg { fill: #1a1917 !important; }
 .stMultiSelect [data-baseweb="tag"] {
-    background: var(--ink) !important;
-    border-radius: 4px !important;
+    background: #1a1917 !important; border-radius: 4px !important;
 }
 .stMultiSelect [data-baseweb="tag"] span { color: white !important; }
 
 .stNumberInput input, div[data-baseweb="input"] input {
-    background: var(--white) !important;
-    border-color: var(--border) !important;
-    border-radius: 8px !important;
-    color: var(--ink) !important;
-    font-family: 'DM Sans', sans-serif !important;
+    background: #ffffff !important; border-color: #e8e6df !important;
+    border-radius: 8px !important; color: #1a1917 !important;
 }
 .stNumberInput [data-baseweb="input"] {
-    background: var(--white) !important;
-    border-color: var(--border) !important;
+    background: #ffffff !important; border-color: #e8e6df !important;
     border-radius: 8px !important;
 }
 .stNumberInput button {
-    background: var(--snow) !important;
-    border-color: var(--border) !important;
-    color: var(--ink) !important;
+    background: #f0efe9 !important; border-color: #e8e6df !important;
+    color: #1a1917 !important;
 }
 
 .stButton > button {
-    background: #e8e6df !important;
-    color: var(--ink) !important;
-    font-family: 'DM Sans', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 0.9rem !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 10px !important;
-    padding: 0.65rem 1.5rem !important;
-    letter-spacing: 0.3px !important;
-    transition: all 0.2s ease !important;
-    width: 100% !important;
+    background: #e8e6df !important; color: #1a1917 !important;
+    font-family: 'DM Sans', sans-serif !important; font-weight: 600 !important;
+    font-size: 0.9rem !important; border: 1px solid #e8e6df !important;
+    border-radius: 10px !important; padding: 0.65rem 1.5rem !important;
+    transition: all 0.2s ease !important; width: 100% !important;
 }
 .stButton > button:hover {
-    background: var(--ink) !important;
-    color: white !important;
-    border-color: var(--ink) !important;
-    transform: translateY(-1px) !important;
+    background: #1a1917 !important; color: white !important;
+    border-color: #1a1917 !important; transform: translateY(-1px) !important;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
 }
 
-.page-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-}
-.page-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.6rem;
-    color: #1a1917 !important;
-    -webkit-text-fill-color: #1a1917 !important;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-}
-.page-title em {
-    font-style: italic;
-    color: #b8935a !important;
-    -webkit-text-fill-color: #b8935a !important;
-}
-.page-date {
-    font-size: 0.78rem;
-    color: var(--muted);
-    letter-spacing: 0.5px;
-    text-align: right;
-}
-
 .metrics-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; margin-bottom: 2rem;
 }
 .metric-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.4rem 1.6rem;
-    box-shadow: var(--shadow);
+    background: #ffffff; border: 1px solid #e8e6df;
+    border-radius: 14px; padding: 1.4rem 1.6rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 .metric-card-label {
-    font-size: 0.7rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #9e9b93; font-weight: 500; margin-bottom: 0.5rem;
 }
 .metric-card-value {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
-    color: var(--ink);
-    line-height: 1;
+    font-family: 'DM Serif Display', serif; font-size: 2.2rem;
+    color: #1a1917; line-height: 1;
 }
-.metric-card-sub {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 0.3rem;
-}
-
-.notice {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold);
-    border-radius: 8px;
-    padding: 0.75rem 1.1rem;
-    font-size: 0.8rem;
-    color: var(--ink2);
-    margin-bottom: 1.8rem;
-}
+.metric-card-sub { font-size: 0.75rem; color: #9e9b93; margin-top: 0.3rem; }
 
 .results-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 1rem;
 }
 .results-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    color: var(--ink);
+    font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: #1a1917;
 }
 .results-count {
-    background: var(--ink);
-    color: white !important;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
-}
-
-[data-testid="stDataFrame"] {
-    border-radius: var(--radius) !important;
-    border: 1px solid var(--border) !important;
-    overflow: hidden !important;
-    box-shadow: var(--shadow) !important;
-}
-
-.divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 2rem 0;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 5rem 2rem;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-.empty-state-symbol {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3.5rem;
-    color: var(--border);
-    margin-bottom: 1rem;
-}
-.empty-state-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    color: var(--ink);
-    margin-bottom: 0.5rem;
-}
-.empty-state-sub {
-    font-size: 0.85rem;
-    color: var(--muted);
-    max-width: 360px;
-    margin: 0 auto;
-    line-height: 1.6;
+    background: #1a1917; color: white !important; font-size: 0.75rem;
+    font-weight: 600; padding: 3px 10px; border-radius: 20px;
 }
 
 .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.3rem;
-    color: var(--ink);
-    margin-bottom: 1rem;
+    font-family: 'DM Serif Display', serif; font-size: 1.3rem;
+    color: #1a1917; margin-bottom: 1rem;
+}
+
+[data-testid="stDataFrame"] {
+    border-radius: 14px !important; border: 1px solid #e8e6df !important;
+    overflow: hidden !important; box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+}
+
+.empty-state {
+    text-align: center; padding: 5rem 2rem; background: #ffffff;
+    border: 1px solid #e8e6df; border-radius: 14px;
+}
+.empty-state-symbol {
+    font-family: 'DM Serif Display', serif; font-size: 3.5rem;
+    color: #e8e6df; margin-bottom: 1rem;
+}
+.empty-state-title {
+    font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+    color: #1a1917; margin-bottom: 0.5rem;
+}
+.empty-state-sub {
+    font-size: 0.85rem; color: #9e9b93;
+    max-width: 360px; margin: 0 auto; line-height: 1.6;
 }
 
 .stDownloadButton > button {
-    background: transparent !important;
-    color: var(--ink) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 8px !important;
-    font-family: 'DM Sans', sans-serif !important;
-    font-size: 0.82rem !important;
-    font-weight: 500 !important;
-    padding: 0.5rem 1.2rem !important;
-    transition: all 0.2s !important;
+    background: transparent !important; color: #1a1917 !important;
+    border: 1px solid #e8e6df !important; border-radius: 8px !important;
+    font-family: 'DM Sans', sans-serif !important; font-size: 0.82rem !important;
+    font-weight: 500 !important; padding: 0.5rem 1.2rem !important;
 }
 .stDownloadButton > button:hover {
-    background: var(--ink) !important;
-    color: white !important;
-    border-color: var(--ink) !important;
+    background: #1a1917 !important; color: white !important;
+    border-color: #1a1917 !important;
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--off); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+::-webkit-scrollbar-track { background: #f7f6f3; }
+::-webkit-scrollbar-thumb { background: #e8e6df; border-radius: 3px; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -360,7 +235,7 @@ def fetch_stock_data(ticker_symbol):
             try:
                 yr_new = pd.to_datetime(cols[0]).year
                 yr_old = pd.to_datetime(cols[1]).year
-                growth_period = f"FY{yr_old}→FY{yr_new}"
+                growth_period = f"FY{yr_old}-FY{yr_new}"
             except Exception:
                 growth_period = "YoY"
 
@@ -421,20 +296,13 @@ with st.sidebar:
 
     st.markdown('<p class="section-label">Universe</p>', unsafe_allow_html=True)
     selected_stocks = st.multiselect(
-        "Stocks",
-        options=list(NSE_STOCKS.keys()),
-        default=list(NSE_STOCKS.keys()),
-        format_func=lambda x: f"{x}  -  {NSE_STOCKS[x]}",
-        label_visibility="collapsed"
+        "Stocks", options=list(NSE_STOCKS.keys()), default=list(NSE_STOCKS.keys()),
+        format_func=lambda x: f"{x}  -  {NSE_STOCKS[x]}", label_visibility="collapsed"
     )
-
     all_sectors = sorted(set(SECTORS.values()))
     selected_sectors = st.multiselect(
-        "Sectors",
-        options=all_sectors,
-        default=all_sectors,
-        label_visibility="collapsed",
-        placeholder="Filter by sector..."
+        "Sectors", options=all_sectors, default=all_sectors,
+        label_visibility="collapsed", placeholder="Filter by sector..."
     )
 
     st.markdown('<p class="section-label">Valuation</p>', unsafe_allow_html=True)
@@ -446,15 +314,10 @@ with st.sidebar:
 
     mcap_enabled = st.checkbox("Min Market Cap", value=False)
     if mcap_enabled:
-        mcap_min = st.number_input(
-            "Min Market Cap",
-            value=10000,
-            step=5000,
-            min_value=0,
-            label_visibility="collapsed",
-            help="Enter minimum market cap in Rs Crore. Adjusts in multiples of Rs 5,000 Cr."
-        )
-        st.caption(f"Market Cap >= Rs {mcap_min:,} Cr  -  steps of Rs 5,000 Cr")
+        mcap_min = st.number_input("Min Market Cap", value=10000, step=5000, min_value=0,
+                                    label_visibility="collapsed",
+                                    help="Minimum market cap in Rs Crore. Steps of Rs 5,000 Cr.")
+        st.caption(f"Market Cap >= Rs {mcap_min:,} Cr  (steps of Rs 5,000 Cr)")
     else:
         mcap_min = 0
 
@@ -468,12 +331,12 @@ with st.sidebar:
     rev_enabled = st.checkbox("Min Sales Growth (%)", value=True)
     rev_min = st.slider("Sales Growth", -20, 100, 10, disabled=not rev_enabled, label_visibility="collapsed")
     if rev_enabled:
-        st.caption(f"Sales Growth >= {rev_min}%  -  Year-on-Year (latest annual)")
+        st.caption(f"Sales Growth >= {rev_min}%  (Year-on-Year, latest annual)")
 
     profit_enabled = st.checkbox("Min Profit Growth (%)", value=True)
     profit_min = st.slider("Profit Growth", -20, 100, 10, disabled=not profit_enabled, label_visibility="collapsed")
     if profit_enabled:
-        st.caption(f"Profit Growth >= {profit_min}%  -  Year-on-Year (latest annual)")
+        st.caption(f"Profit Growth >= {profit_min}%  (Year-on-Year, latest annual)")
 
     st.markdown("<br>", unsafe_allow_html=True)
     run_screen = st.button("Run Screener", use_container_width=True)
@@ -483,10 +346,14 @@ from datetime import datetime
 today = datetime.now().strftime("%A, %d %B %Y")
 
 st.markdown(f"""
-<div class="page-header">
-    <div class="page-title" style="color:#1a1917 !important;">NSE <em>Stock</em> Screener</div>
-    <div class="page-date">
-        <div style="color:#1a1917;font-weight:500;">NSE / BSE</div>
+<div style="display:flex; align-items:flex-end; justify-content:space-between;
+            margin-bottom:2.5rem; padding-bottom:1.5rem; border-bottom:1px solid #e8e6df;">
+    <div style="font-family:'DM Serif Display',Georgia,serif; font-size:2.6rem;
+                line-height:1.2; letter-spacing:-0.5px;">
+        <span style="color:#1a1917; -webkit-text-fill-color:#1a1917; font-style:normal;">NSE </span><em style="color:#b8935a; -webkit-text-fill-color:#b8935a; font-style:italic;">Stock </em><span style="color:#1a1917; -webkit-text-fill-color:#1a1917; font-style:normal;">Screener</span>
+    </div>
+    <div style="font-size:0.78rem; color:#9e9b93; text-align:right;">
+        <div style="color:#1a1917; font-weight:500;">NSE / BSE</div>
         <div>{today}</div>
         <div style="margin-top:4px;">Powered by Yahoo Finance</div>
     </div>
@@ -494,7 +361,14 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.markdown("""
-<div class="notice">
+<div style="background:#1a1917; color:white; border-radius:10px; padding:0.7rem 1.1rem;
+            font-size:0.82rem; margin-bottom:1rem; display:flex; align-items:center; gap:8px;">
+    <span style="font-size:1.1rem;">&#8592;</span>
+    <span>On mobile: tap the <strong style="color:#b8935a;">arrow at top-left</strong> to open filters, then hit Run Screener</span>
+</div>
+<div style="background:white; border:1px solid #e8e6df; border-left:3px solid #b8935a;
+            border-radius:8px; padding:0.75rem 1.1rem; font-size:0.8rem;
+            color:#3d3b36; margin-bottom:1.8rem;">
     Data sourced from Yahoo Finance &nbsp;&middot;&nbsp; Financials reflect latest annual report &nbsp;&middot;&nbsp; Growth figures shown with FY period in column headers
 </div>
 """, unsafe_allow_html=True)
@@ -563,10 +437,7 @@ if run_screen:
                 <div class="empty-state">
                     <div class="empty-state-symbol">—</div>
                     <div class="empty-state-title">No stocks matched</div>
-                    <div class="empty-state-sub">
-                        Try relaxing your filter thresholds — lower the minimum
-                        growth requirements or widen the P/E range.
-                    </div>
+                    <div class="empty-state-sub">Try relaxing your filter thresholds.</div>
                 </div>
                 """, unsafe_allow_html=True)
             else:
@@ -579,12 +450,11 @@ if run_screen:
 
                 def style_growth(val):
                     if pd.isna(val): return "color: #9e9b93"
-                    return "color: #2d6a4f; font-weight: 500" if val >= 0 else "color: #c0392b; font-weight: 500"
+                    return "color: #2d6a4f; font-weight:500" if val >= 0 else "color: #c0392b; font-weight:500"
 
                 display_cols = ["Symbol", "Company", "Sector", "Price (Rs)",
                                 "P/E Ratio", "Market Cap (Cr)", "ROE (%)",
                                 "Sales Growth (%)", "Profit Growth (%)"]
-
                 display_df = filtered[display_cols].copy()
                 display_df = display_df.rename(columns={
                     "Sales Growth (%)":  f"Sales Growth ({growth_period})",
@@ -611,8 +481,7 @@ if run_screen:
                     })
 
                 st.dataframe(
-                    styled,
-                    use_container_width=True,
+                    styled, use_container_width=True,
                     height=min(420, 60 + len(filtered) * 38),
                     hide_index=True,
                     column_config={
@@ -626,15 +495,15 @@ if run_screen:
                     }
                 )
 
-                st.markdown('<hr class="divider">', unsafe_allow_html=True)
+                st.markdown("<br>", unsafe_allow_html=True)
                 st.markdown('<div class="section-title">Growth vs Industry Average</div>', unsafe_allow_html=True)
 
                 sector_avg = df.groupby("Sector")[["Sales Growth (%)", "Profit Growth (%)"]].mean().round(1)
                 cmp = filtered.copy()
-                cmp["Industry Sales Avg (%)"]   = cmp["Sector"].map(sector_avg["Sales Growth (%)"])
-                cmp["Industry Profit Avg (%)"]  = cmp["Sector"].map(sector_avg["Profit Growth (%)"])
-                cmp["Beats Sales Avg"]          = cmp["Sales Growth (%)"] > cmp["Industry Sales Avg (%)"]
-                cmp["Beats Profit Avg"]         = cmp["Profit Growth (%)"] > cmp["Industry Profit Avg (%)"]
+                cmp["Industry Sales Avg (%)"]  = cmp["Sector"].map(sector_avg["Sales Growth (%)"])
+                cmp["Industry Profit Avg (%)"] = cmp["Sector"].map(sector_avg["Profit Growth (%)"])
+                cmp["Beats Sales Avg"]         = cmp["Sales Growth (%)"] > cmp["Industry Sales Avg (%)"]
+                cmp["Beats Profit Avg"]        = cmp["Profit Growth (%)"] > cmp["Industry Profit Avg (%)"]
 
                 ind_cols = ["Symbol", "Sector",
                             "Sales Growth (%)", "Industry Sales Avg (%)", "Beats Sales Avg",
@@ -669,24 +538,19 @@ else:
         <div class="empty-state-symbol">—</div>
         <div class="empty-state-title">Ready to screen</div>
         <div class="empty-state-sub">
-            Configure your filters in the sidebar — valuation, quality, and growth thresholds —
-            then press <strong>Run Screener</strong> to discover qualifying companies.
+            Configure your filters in the sidebar, then press
+            <strong>Run Screener</strong> to discover qualifying companies.
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
-
     with st.expander("How to use Equita"):
         st.markdown("""
         **1. Select your universe** — choose which NSE stocks to include and filter by sector.
-
         **2. Set valuation filters** — P/E ratio range tells you how expensive a stock is relative to earnings.
-
-        **3. Set quality filters** — ROE (Return on Equity) measures how efficiently a company uses shareholder money.
-
+        **3. Set quality filters** — ROE measures how efficiently a company uses shareholder money.
         **4. Set growth filters** — Sales and Profit Growth show if the business is expanding year-on-year.
-
         **5. Run & compare** — the Industry Comparison table shows which stocks outperform their sector peers.
 
         **Tip:** Start with relaxed filters to see what data is available, then tighten gradually.
