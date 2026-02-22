@@ -1,0 +1,20 @@
+[theme]
+base = "light"
+backgroundColor = "#f7f6f3"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#1a1917"
+font = "sans serif"
+```
+
+**Step 4** — Click **"Commit new file"**
+
+---
+
+That's it! Your repo should now look like this:
+```
+nse-stock-screener/
+├── app.py
+├── requirements.txt
+├── README.md
+└── .streamlit/
+    └── config.toml
